@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoRules.Zen", "GoRules.Zen\GoRules.Zen.csproj", "{532C2E64-A138-4BBE-88FC-387283AD0DF1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoRules.Zen.Tests", "GoRules.Zen.Tests\GoRules.Zen.Tests.csproj", "{04976AEF-2568-4C59-98F5-82125744016B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{532C2E64-A138-4BBE-88FC-387283AD0DF1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{532C2E64-A138-4BBE-88FC-387283AD0DF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{532C2E64-A138-4BBE-88FC-387283AD0DF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{532C2E64-A138-4BBE-88FC-387283AD0DF1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{04976AEF-2568-4C59-98F5-82125744016B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{04976AEF-2568-4C59-98F5-82125744016B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{04976AEF-2568-4C59-98F5-82125744016B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{04976AEF-2568-4C59-98F5-82125744016B}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
