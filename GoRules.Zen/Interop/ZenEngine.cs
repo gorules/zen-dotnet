@@ -28,7 +28,7 @@ public class ZenEngine : IDisposable
     {
       _callbackHandle = GCHandle.Alloc(loaderDelegate);
       IntPtr pCallback = Marshal.GetFunctionPointerForDelegate(loaderDelegate);
-      _internalReference = ZenFfi.zen_engine_new_with_native_loader((delegate* unmanaged[Cdecl]<byte*, ZenDecisionLoaderResult>)pCallback);
+      _internalReference = ZenFfi.zen_engine_new_native((delegate* unmanaged[Cdecl]<byte*, ZenDecisionLoaderResult>)pCallback, null);
     }
   }
 
