@@ -5,8 +5,9 @@ namespace GoRules.Zen;
 public record ZenEngineOptions
 {
   public Func<string, Task<byte[]>>? Loader;
+  public Func<string, Task>? CustomNode; // TODO
 
-  internal unsafe ZenEngineCallbackDelegate? GetLoaderDelegate()
+  internal unsafe ZenEngineLoaderDelegate? GetLoaderDelegate()
   {
     if (Loader is null)
       return null;

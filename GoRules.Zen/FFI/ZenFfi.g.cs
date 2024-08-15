@@ -17,57 +17,106 @@ namespace GoRules.Zen
         [DllImport("libc", EntryPoint = "free", SetLastError = false)]
         public static extern void free(IntPtr ptr);
 
-        /// <summary>Frees ZenDecision</summary>
+        /// <summary>
+        ///  Frees ZenDecision
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_decision_free", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void zen_decision_free(ZenDecisionStruct* decision);
+        internal static extern void zen_decision_free(ZenDecisionStruct* decision);
 
-        /// <summary>Evaluates ZenDecision Caller is responsible for freeing context and ZenResult.</summary>
+        /// <summary>
+        ///  Evaluates ZenDecision
+        ///  Caller is responsible for freeing context and ZenResult.
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_decision_evaluate", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<byte> zen_decision_evaluate(ZenDecisionStruct* decision, byte* context_ptr, ZenEngineEvaluationOptions options);
+        internal static extern ZenResult<byte> zen_decision_evaluate(ZenDecisionStruct* decision, byte* context_ptr, ZenEngineEvaluationOptions options);
 
-        /// <summary>Creates a new GoRules.Zen instance with loader, caller is responsible for freeing the returned reference by calling zen_engine_free.</summary>
-        [DllImport(__DllName, EntryPoint = "zen_engine_new_with_native_loader", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenEngineStruct* zen_engine_new_with_native_loader(delegate* unmanaged[Cdecl]<byte*, ZenDecisionLoaderResult> callback);
-
-        /// <summary>Creates a DecisionEngine for using GoLang handler (optional). Caller is responsible for freeing DecisionEngine.</summary>
-        [DllImport(__DllName, EntryPoint = "zen_engine_new_with_go_loader", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenEngineStruct* zen_engine_new_with_go_loader(nuint* maybe_loader);
-
-        /// <summary>Evaluate expression, responsible for freeing expression and context</summary>
-        [DllImport(__DllName, EntryPoint = "zen_evaluate_expression", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<byte> zen_evaluate_expression(byte* expression, byte* context);
-
-        /// <summary>Evaluate unary expression, responsible for freeing expression and context True = 1 False = 0</summary>
-        [DllImport(__DllName, EntryPoint = "zen_evaluate_unary_expression", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<Int32> zen_evaluate_unary_expression(byte* expression, byte* context);
-
-        /// <summary>Create a new GoRules.Zen instance, caller is responsible for freeing the returned reference by calling zen_engine_free.</summary>
+        /// <summary>
+        ///  Create a new ZenEngine instance, caller is responsible for freeing the returned reference
+        ///  by calling zen_engine_free.
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_engine_new", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenEngineStruct* zen_engine_new();
+        internal static extern ZenEngineStruct* zen_engine_new();
 
-        /// <summary>Frees the GoRules.Zen instance reference from the memory</summary>
+        /// <summary>
+        ///  Frees the ZenEngine instance reference from the memory
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_engine_free", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern void zen_engine_free(ZenEngineStruct* engine);
+        internal static extern void zen_engine_free(ZenEngineStruct* engine);
 
-        /// <summary>Creates a Decision using a reference of DecisionEngine and content (JSON) Caller is responsible for freeing content and ZenResult.</summary>
+        /// <summary>
+        ///  Creates a Decision using a reference of DecisionEngine and content (JSON)
+        ///  Caller is responsible for freeing content and ZenResult.
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_engine_create_decision", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<ZenDecisionStruct> zen_engine_create_decision(ZenEngineStruct* engine, byte* content);
+        internal static extern ZenResult<ZenDecisionStruct> zen_engine_create_decision(ZenEngineStruct* engine, byte* content);
 
-        /// <summary>Evaluates rules engine using a DecisionEngine reference via loader Caller is responsible for freeing: key, context and ZenResult.</summary>
+        /// <summary>
+        ///  Evaluates rules engine using a DecisionEngine reference via loader
+        ///  Caller is responsible for freeing: key, context and ZenResult.
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_engine_evaluate", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<byte> zen_engine_evaluate(ZenEngineStruct* engine, byte* key, byte* context, ZenEngineEvaluationOptions options);
+        internal static extern ZenResult<byte> zen_engine_evaluate(ZenEngineStruct* engine, byte* key, byte* context, ZenEngineEvaluationOptions options);
 
-        /// <summary>Loads a Decision through DecisionEngine Caller is responsible for freeing: key and ZenResult.</summary>
+        /// <summary>
+        ///  Loads a Decision through DecisionEngine
+        ///  Caller is responsible for freeing: key and ZenResult.
+        /// </summary>
         [DllImport(__DllName, EntryPoint = "zen_engine_get_decision", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
-        public static extern ZenResult<ZenDecisionStruct> zen_engine_get_decision(ZenEngineStruct* engine, byte* key);
+        internal static extern ZenResult<ZenDecisionStruct> zen_engine_get_decision(ZenEngineStruct* engine, byte* key);
+
+        [DllImport(__DllName, EntryPoint = "zen_evaluate_expression", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        internal static extern ZenResult<byte> zen_evaluate_expression(byte* expression, byte* context);
+
+        /// <summary>
+        ///  Evaluate unary expression, responsible for freeing expression and context
+        ///  True = 1
+        ///  False = 0
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "zen_evaluate_unary_expression", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        internal static extern ZenResult<Int32> zen_evaluate_unary_expression(byte* expression, byte* context);
+
+        /// <summary>
+        ///  Evaluate unary expression, responsible for freeing expression and context
+        ///  True = 1
+        ///  False = 0
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "zen_evaluate_template", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        internal static extern ZenResult<byte> zen_evaluate_template(byte* template, byte* context);
+
+        /// <summary>
+        ///  Creates a new ZenEngine instance with loader, caller is responsible for freeing the returned reference
+        ///  by calling zen_engine_free.
+        /// </summary>
+        [DllImport(__DllName, EntryPoint = "zen_engine_new_native", CallingConvention = CallingConvention.Cdecl, ExactSpelling = true)]
+        internal static extern ZenEngineStruct* zen_engine_new_native(delegate* unmanaged[Cdecl]<byte*, ZenDecisionLoaderResult> loader_callback, delegate* unmanaged[Cdecl]<byte*, ZenCustomNodeResult> custom_node_callback);
 
 
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal unsafe partial struct ZenCustomNodeResult
+    {
+        public byte* content;
+        public byte* error;
     }
 
     [StructLayout(LayoutKind.Sequential)]
     internal unsafe partial struct ZenDecisionStruct
     {
         public fixed byte _data[1];
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal unsafe partial struct ZenEngineStruct
+    {
+        public fixed byte _data[1];
+    }
+
+    [StructLayout(LayoutKind.Sequential)]
+    internal unsafe partial struct ZenEngineEvaluationOptions
+    {
+        [MarshalAs(UnmanagedType.U1)] public bool trace;
+        public byte max_depth;
     }
 
     [StructLayout(LayoutKind.Sequential)]
@@ -84,21 +133,10 @@ namespace GoRules.Zen
         public byte error;
         public byte* details;
     }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal unsafe partial struct ZenEngineStruct
-    {
-        public fixed byte _data[1];
-    }
-
-    [StructLayout(LayoutKind.Sequential)]
-    internal unsafe partial struct ZenEngineEvaluationOptions
-    {
-        [MarshalAs(UnmanagedType.U1)] public bool trace;
-        public byte max_depth;
-    }
-
-    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
-    internal unsafe delegate ZenDecisionLoaderResult ZenEngineCallbackDelegate(byte* data);
-}
     
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal unsafe delegate ZenDecisionLoaderResult ZenEngineLoaderDelegate(byte* data);
+    
+    [UnmanagedFunctionPointer(CallingConvention.Cdecl)]
+    internal unsafe delegate ZenDecisionLoaderResult ZenEngineCustomNodeDelegate(byte* data);
+}
